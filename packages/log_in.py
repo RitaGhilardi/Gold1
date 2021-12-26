@@ -4,8 +4,8 @@ import hashlib
 
 def log_in(email, password):
     
-    db_users = pd.read_csv("/Users/alessandrobonetto/Gold1/csv_files/db_users.csv")
-    db_employees = pd.read_csv("/Users/alessandrobonetto/Gold1/csv_files/db_employees.csv")
+    db_users = pd.read_csv(r'csv_file/db_users.csv')
+    db_employees = pd.read_csv(r'csv_file/db_employees.csv')
 
     suffix = email.split("@")[1]
    
