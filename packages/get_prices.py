@@ -13,22 +13,28 @@ def get_prices():
     resp = requests.get('https://metals-api.com/api/' + endpoint
                         + '?access_key=' + access_key + '&base='
                         + base_currency + '&symbols=' + symbol)
+    s = resp.json()['success']
 
-    rates = resp.json()['rates']
+    if s is False:
+        proces = None
 
-    #Conversion of the values in grams and more readable names
-    
-    oz = 28.3495
+    else:
 
-    conversion = {'XAU': 'Gold',
-                  'XAG': 'Silver',
-                  'XPD': 'Palladium',
-                  'XPT': 'Platinum',
-                  'XRH': 'Rhodium'}
+        rates = resp.json()['rates']
 
-    prices = {}
+        #Convert values in Euro over grams and add more readable names
+        
+        oz = 28.3495
 
-    for key in rates.keys():
-        prices[conversion[key]] = round((rates[key]/oz), 3)
+        conversion = {'XAU': 'Gold',
+                      'XAG': 'Silver',
+                      'XPD': 'Palladium',
+                      'XPT': 'Platinum',
+                      'XRH': 'Rhodium'}
 
-    return(prices)
+        prices = {}
+
+        for key in rates.keys():
+            prices[conversion[key]] = round((rates[key]/oz), 3)
+
+    return(s, prices)
