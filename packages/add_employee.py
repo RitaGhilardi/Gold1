@@ -5,8 +5,8 @@ from email_validator import validate_email, EmailNotValidError
 
 def add_employee(email, password):
     
-    df_employees = pd.read_csv(r"csv_file/employees.csv")
-    db_employees = pd.read_csv(r"csv_file/db_employees.csv")
+    df_employees = pd.read_csv(r"csv_files/employees.csv")
+    db_employees = pd.read_csv(r"csv_files/db_employees.csv")
     
     try: 
         valid = validate_email(email)
@@ -31,7 +31,7 @@ def add_employee(email, password):
                         digest_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
                         new_df = pd.DataFrame({"email": [email], "password": [digest_password]})
                         db_employees = db_employees.append(new_df)
-                        db_employees.to_csv(r"csv_file/employees.csv", index = False)
+                        db_employees.to_csv(r"csv_files/employees.csv", index = False)
                         print("Registration was successful!")
                         break
 
