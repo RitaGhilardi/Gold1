@@ -1,6 +1,12 @@
 import pandas as pd 
 
-def get_balance(): 
+def get_balance():
+
+    ''' This function can be called only by employees and it does
+        not return anything. This function prints all the amount 
+        of metals in the inventory, the cash available to buy
+        new metals and the amount of money due to bank.
+    ''' 
     
     df_inventory = pd.read_csv(r'csv_file/inventory.csv') 
     df_wallet = pd.read_csv(r'csv_file/wallet.csv') 
