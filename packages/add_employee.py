@@ -2,6 +2,7 @@ import pandas as pd
 import argparse
 import hashlib
 from email_validator import validate_email, EmailNotValidError
+
 from packages.check_password import check_password
 
 def add_employee(email, password):
@@ -62,4 +63,3 @@ def add_employee(email, password):
     except EmailNotValidError as e:
         print(str(e))
     
-   
