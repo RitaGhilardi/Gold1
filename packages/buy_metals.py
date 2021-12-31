@@ -1,11 +1,20 @@
+from packages.get_prices import get_prices
+#from packages.check_cvc import ask_cvc
 import time
 import pandas as pd
-from packages.get_prices import get_prices
-import pandas as pd
-from datetime import date
 
 
-def buy_metal(client, metal, quantity, check):
+def buy_metal(client, metal, quantity):
+
+    ''' This function get called after the check done by the log_in function,
+        so we are sure that the user is correctly registered into our database.
+        The function buy sell to the client the amount of metal requested by
+        the client. If we do not have enough metal in our inventory, this function 
+        call "get_prices" to refill the inventory before the user's purchase.
+    '''
+    
+    import pandas as pd
+    from datetime import date
 
     # Open the inventory
     df = pd.read_csv(r'csv_file/inventory.csv')
@@ -71,6 +80,9 @@ def buy_metal(client, metal, quantity, check):
             # We have enough metal, we can sell it without buying it
             # We ask to type the cvc of the credit card to confirm the purchase
 
+            
+            #check = ask_cvc(client)
+            check = True  #Temporary
             if check is False:
                 success = False
                 print('We are sorry, the purchase was abort. \n')
@@ -120,6 +132,7 @@ def buy_metal(client, metal, quantity, check):
 
                 # Before proceeding we check the cvc of the client
 
+                check = ask_cvc(client)
                 if check is False:
                     success = False
                     print('We are sorry, the purchase was abort. \n')
@@ -170,5 +183,31 @@ def buy_metal(client, metal, quantity, check):
                     print('Thank you so much, you have'
                           'just bought ', quantity, 'g of ', metal,
                           ' at the price of ', p, ' EUR. \n')
-                          
+
+        if success is True:
+            # Register transaction, first open the register
+
+            register = pd.read_csv(r'csv_file/register.csv')
+            today = date.today()
+
+            # dd/mm/YY
+            d1 = today.strftime("%d/%m/%Y")
+
+            # Create a new row
+
+            add = pd.DataFrame(columns=['Customer',
+                                        'Date', 'Metal', 'Quantity', 'Price'])
+            add.loc[0] = [client, d1, metal, quantity, p]
+
+            # Add the new row
+
+            register = register.append(add, ignore_index=True)
+
+            # Close the register
+            register.to_csv(r'csv_file/register.csv', index=False)
+
+        w.to_csv(r'csv_file/wallet.csv', index=False)
+
+    df.to_csv(r'csv_file/inventory.csv', index=False)
+
     return result
