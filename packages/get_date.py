@@ -37,18 +37,18 @@ def get_date():
                 nm = int(m)
                 ny = int(y)
                 
+                from datetime import date
                 today = date.today()
 
                 # dd/mm/YY
                 d1 = today.strftime("%d/%m/%Y")
-                ay=d1[6:]
+                ay=int(d1[6:])
                 
                 if len(m) <= 2 and len(y) == 4 and nm > 0 and nm < 13 and ny >= ay and ny < (ay + 6):
                     
                     #Check if the card is valid but expires this year
                     
                     if ny == ay:
-                        from datetime import date
                         am = d1[3:5]
                         if m > am:
                             good = True
