@@ -1,5 +1,5 @@
 from packages.get_prices import get_prices
-#from packages.check_cvc import ask_cvc
+from packages.check_cvc import ask_cvc
 import time
 import pandas as pd
 
@@ -81,8 +81,7 @@ def buy_metal(client, metal, quantity):
             # We ask to type the cvc of the credit card to confirm the purchase
 
             
-            #check = ask_cvc(client)
-            check = True  #Temporary
+            check = ask_cvc(client)
             if check is False:
                 success = False
                 print('We are sorry, the purchase was abort. \n')
