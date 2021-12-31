@@ -1,5 +1,7 @@
 def get_date():
     
+    #Set some parameters for the while cycle
+    
     cc = False
     i=0
 
@@ -9,8 +11,11 @@ def get_date():
         
         good = False
         
+        #Check if the input were empty 
+        
         if m and y:
             
+            #Check if the input contains only numerical characters
             
             int_number = '0123456789'
             valid = True
@@ -26,6 +31,9 @@ def get_date():
                     break 
                 
             if valid == True:
+                
+                #Check if the numbers typed have the correct format
+                
                 nm = int(m)
                 ny = int(y)
                 
@@ -34,8 +42,12 @@ def get_date():
                 # dd/mm/YY
                 d1 = today.strftime("%d/%m/%Y")
                 ay=d1[6:]
-                if len(m) <= 2 and len(y) == 4 and nm > 0 and nm < 13 and ny >= 2021 and ny < (ay + 6):
-                    if ny == 2021:
+                
+                if len(m) <= 2 and len(y) == 4 and nm > 0 and nm < 13 and ny >= ay and ny < (ay + 6):
+                    
+                    #Check if the card is valid but expires this year
+                    
+                    if ny == ay:
                         from datetime import date
                         am = d1[3:5]
                         if m > am:
@@ -59,14 +71,20 @@ def get_date():
             cc = True
             print('The data was accepted. \n')
             
+        #Check if the user tried more than 3 times to enter the input
+        
         elif i >= 2:
             print('Fatal error, the credit card number is not on the correct format and you reached the limit of chances that you had. Please try again to register to our website. \n')
             break
             
+        #Increase i if the input was wrong
+        
         elif good == False:                    
             i = i + 1
             
         
+    
+    #Create the output based on the inputs and all the checks
     
     if cc == False:
         date = None
