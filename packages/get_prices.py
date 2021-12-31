@@ -1,6 +1,14 @@
 def get_prices():
     import requests
 
+    ''' This function get called by the function "buy_metals" when in the 
+        inventory there is not enough of some metals. The function calls and
+        API to get all the current prices of metals and modify them go have
+        price per grams. The function return a dictionary with the current 
+        prices and a boolean variable that state if the API was online and 
+        so if the dictionary is full of trustable values.
+    '''
+    
     # Create the correct link
     
     symbol = 'XAU,XAG,XPD,XPT,XRH'
