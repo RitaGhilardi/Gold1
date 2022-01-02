@@ -2,6 +2,12 @@ import pandas as pd
 
 def pay_loan():
     
+    ''' This function can be called only by employees. The 
+        function check if there are money due to banks, check
+        the availability of money of the company and repay 
+        part or all the bank loan using all the available money.
+    '''
+    
     w = pd.read_csv(r'csv_file/wallet.csv')
 
     #Control if there are bank loan to be repaid
@@ -12,7 +18,7 @@ def pay_loan():
 
     elif w.loc[0, 'Balance'] == 0:
 
-        print('You have no money to repay your bank loan')
+        print('You have no money to repay your bank loan') 
 
     else:
 
@@ -30,7 +36,7 @@ def pay_loan():
             #Gives all the money we have to repay part of the bank loan
 
             amount = w.loc[0, 'Balance']
-            w.loc[0, 'Bank_Loan'] = w.loc[0, 'Bank_Loan'] - amount
+            w.loc[0, 'Bank_Loan'] = w.loc[0, 'Bank_Loan'] - amount 
             w.loc[0, 'Balance'] = 0
 
             print('You have just paid', amount, 'EUR to the bank,',
