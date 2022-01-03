@@ -62,3 +62,49 @@ grams = arg.buy_grams
 adduser = arg.add_user
 addemployee = arg.add_employee
 e = arg.employee_actions
+
+log = None
+print('\n')
+if addemployee is True:
+    add_employee(username, password)
+elif adduser is True:
+    add_user(username, password)
+else:
+    log = log_in(username, password)
+
+if log is not None:
+    if log == 'employee':
+        s = False
+
+        if metal is not None or grams is not None:
+            print('Sorry but as an employee you are not allowed'
+                  'to buy metals from our company. \n')
+
+        if e == "rr":
+            read_register()
+            s = True
+        elif e == "gb":
+            get_balance()
+            s = True
+        elif e == "pb":
+            pay_loan()
+            s = True
+        elif e is None:
+            print('You succesfully logged in as a employee,'
+                  'but you have to type other arguments to do something. \n')
+
+    elif log == 'user':
+        if metal is None:
+            print('To buy metals you have to specify'
+                  'them using --buy_metal. \n')
+        elif grams is None:
+            print('To buy metals you have to specify'
+                  'the grams you want using --buy_grams. \n')
+        else:
+
+            buy_metal(username, metal, grams)
+
+        if e is not None:
+            print('You tried to call a function that your user is'
+                  'not allowed to launch. As a user you are only allowed'
+                  'to buy metals from our company. \n')
