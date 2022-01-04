@@ -1,10 +1,9 @@
-from packages.get_prices import get_prices
-from packages.check_cvc import ask_cvc
 import time
 import pandas as pd
+from packages.get_prices import get_prices
 
 
-def buy_metal(client, metal, quantity):
+def buy_metal(client, metal, quantity, check):
 
     ''' This function get called after the check done by the log_in function,
         so we are sure that the user is correctly registered into our database.
@@ -81,7 +80,6 @@ def buy_metal(client, metal, quantity):
             # We ask to type the cvc of the credit card to confirm the purchase
 
             
-            check = ask_cvc(client)
             if check is False:
                 success = False
                 print('We are sorry, the purchase was abort. \n')
@@ -131,7 +129,6 @@ def buy_metal(client, metal, quantity):
 
                 # Before proceeding we check the cvc of the client
 
-                check = ask_cvc(client)
                 if check is False:
                     success = False
                     print('We are sorry, the purchase was abort. \n')
