@@ -96,7 +96,7 @@ def add_user(email, password):
                                 db_users = db_users.append(new_df)
                                 db_users.to_csv(r'csv_files/db_users.csv', index = False)
                                 info = pd.read_csv(r'csv_files/info_users.csv')
-                                new = pd.DataFrame({ "ID": new_id, "email" : email,"number": [number], "date": [date], "cvc": [cvc]})
+                                new = pd.DataFrame({ "ID": new_id, "number": [number], "date": [date], "cvc": [cvc]})
                                 info = info.append(new)
                                 info.to_csv(r'csv_files/info_users.csv', index = False)
                                 print("Registration was successful!")
@@ -109,4 +109,3 @@ def add_user(email, password):
                              
                                 
     return result
-       

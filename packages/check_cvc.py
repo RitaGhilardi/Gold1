@@ -8,14 +8,22 @@ def ask_cvc(user):
         to insert it again (maximum 3 times) and verify it.
     '''
     
-    df = pd.read_csv (r'csv_file/info_users.csv')    
+    user_df = pd.read_csv (r'csv_files/db_users.csv')
+    cvc_df = pd.read_csv (r'csv_files/info_users.csv')    
     check = False
     
-    #Search the cvc using the username. This value will be find by construction, because we already did the log in
+    #Search the ID using the username. This value will be find by construction, because we already did the log in
     
-    for i in range(len(df.index)):
-        if df.loc[i,'email'] == user:
-            stored = df.loc[i,'cvc']
+    for i in range(len(user_df.index)):
+        if user_df.loc[i,'email'] == user:
+            user_id = user_df.loc[i,'ID']
+            break
+            
+    #Search the cvc using the ID. This value will be find by construction, because we already did the log in
+    
+    for i in range(len(cvc_df.index)):
+        if cvc_df.loc[i,'ID'] == user_id:
+            stored = cvc_df.loc[i,'cvc']
             break
             
     #Ask to confirm the cvc
@@ -69,3 +77,4 @@ def ask_cvc(user):
             i = i + 1
     
     return check
+
