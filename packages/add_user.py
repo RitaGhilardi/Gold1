@@ -3,10 +3,10 @@ import argparse
 import hashlib
 from email_validator import validate_email, EmailNotValidError
 import random
-from check_password import check_password
-from get_number import get_number
-from get_date import get_date
-from get_cvc import get_cvc
+from packages.check_password import check_password
+from packages.get_number import get_number
+from packages.get_date import get_date
+from packages.get_cvc import get_cvc
 
 def add_user(email, password):
     
