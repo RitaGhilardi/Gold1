@@ -8,7 +8,7 @@ def pay_loan():
         part or all the bank loan using all the available money.
     '''
     
-    w = pd.read_csv(r'csv_file/wallet.csv')
+    w = pd.read_csv(r'csv_files/wallet.csv')
 
     #Control if there are bank loan to be repaid
 
@@ -43,4 +43,4 @@ def pay_loan():
                   'but you still have a debt of',
                   w.loc[0, 'Bank_Loan'], 'EUR')
 
-        w.to_csv(r'csv_file/wallet.csv', index=False)
+        w.to_csv(r'csv_files/wallet.csv', index=False)

@@ -8,8 +8,8 @@ def get_balance():
         new metals and the amount of money due to bank.
     ''' 
     
-    df_inventory = pd.read_csv(r'csv_file/inventory.csv') 
-    df_wallet = pd.read_csv(r'csv_file/wallet.csv') 
+    df_inventory = pd.read_csv(r'csv_files/inventory.csv') 
+    df_wallet = pd.read_csv(r'csv_files/wallet.csv') 
 
     #Inventory balance 
     print('Inventory: \n') 
