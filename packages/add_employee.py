@@ -7,11 +7,13 @@ from packages.check_password import check_password
 
 def add_employee(email, password):
     
-    df_employees = pd.read_csv(r"csv_files/employees.csv")
-    db_employees = pd.read_csv(r"csv_files/db_employees.csv")
-
-    #Check if the mail is written in a valid format
+    df_employees = pd.read_csv(r'csv_files/employees.csv')
+    db_employees = pd.read_csv(r'csv_files/db_employees.csv')
     
+    #Check if the mail is valid format
+    
+    result = False
+
     try: 
         valid = validate_email(email)
         email = valid.email
@@ -41,7 +43,7 @@ def add_employee(email, password):
                         presence = True
                         print('Your email allows you to register as an employee. \n')
                         
-                        #Ask the employee to confirm the password he/she wants to use
+                        #Ask the employee to confirm the password he want to use
                         
                         password_check = check_password(password)
                         if password_check == True:
@@ -52,14 +54,21 @@ def add_employee(email, password):
                             new_df = pd.DataFrame({"email": [email], "password": [digest_password]})
                             db_employees = db_employees.append(new_df)
                             db_employees.to_csv(r'csv_files/db_employees.csv', index = False)
+                            result = True
                             print("Registration was successful!. \n")
+                            
                         
                         break
                         
 
                 if presence == False: 
                     print("We are sorry, this email is not allowed to register as an employee. \n")
+        
+
                     
     except EmailNotValidError as e:
+    
         print(str(e))
+    
+    return result                   
     
