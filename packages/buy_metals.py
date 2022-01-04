@@ -17,7 +17,7 @@ def buy_metal(client, metal, quantity):
     from datetime import date
 
     # Open the inventory
-    df = pd.read_csv(r'csv_file/inventory.csv')
+    df = pd.read_csv(r'csv_files/inventory.csv')
 
     # Ensure that the first letter of the metal is big
     metal = metal.lower()
@@ -71,7 +71,7 @@ def buy_metal(client, metal, quantity):
 
         quantity = int(quantity)
 
-        w = pd.read_csv(r'csv_file/wallet.csv')
+        w = pd.read_csv(r'csv_files/wallet.csv')
 
         # Check if we have enough metal in the inventory
 
@@ -186,7 +186,7 @@ def buy_metal(client, metal, quantity):
         if success is True:
             # Register transaction, first open the register
 
-            register = pd.read_csv(r'csv_file/register.csv')
+            register = pd.read_csv(r'csv_files/register.csv')
             today = date.today()
 
             # dd/mm/YY
@@ -203,10 +203,10 @@ def buy_metal(client, metal, quantity):
             register = register.append(add, ignore_index=True)
 
             # Close the register
-            register.to_csv(r'csv_file/register.csv', index=False)
+            register.to_csv(r'csv_files/register.csv', index=False)
 
-        w.to_csv(r'csv_file/wallet.csv', index=False)
+        w.to_csv(r'csv_files/wallet.csv', index=False)
 
-    df.to_csv(r'csv_file/inventory.csv', index=False)
+    df.to_csv(r'csv_files/inventory.csv', index=False)
 
     return result

@@ -8,7 +8,7 @@ def read_register():
     #Open the register
 
     import pandas as pd
-    register = pd.read_csv(r'csv_file/register.csv')
+    register = pd.read_csv(r'csv_files/register.csv')
 
     print('Register of transactions: \n')
 
