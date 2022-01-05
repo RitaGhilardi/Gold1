@@ -65,7 +65,7 @@ def add_employee(email, password):
 
                 if presence is False:
                     print("We are sorry, this email is not allowed"
-                          "to register as an employee. \n")
+                          " to register as an employee. \n")
 
     except EmailNotValidError as e:
 

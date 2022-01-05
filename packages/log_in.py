@@ -57,8 +57,8 @@ def log_in(email, password):
                 elif (address != email and list(db_employees["email"])
                       .index(address) == len(db_employees["email"])-1):
                     print('We are sorry, but your employee account' 
-                          'does not exist. Register to our website'
-                          'before log in')
+                          ' does not exist. Register to our website'
+                          ' before logging in.')
                 else:
                     continue
 
@@ -84,7 +84,7 @@ def log_in(email, password):
                 #Print a different message if the email is not in our register
                 elif (mail != email and list(db_users["email"])
                       .index(mail) == len(db_users["email"])-1):
-                    print('We are sorry but your account does not exist.' 
+                    print('We are sorry but your account does not exist. ' 
                           'Please register yourself before log in')
 
 

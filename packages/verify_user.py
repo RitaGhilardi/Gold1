@@ -12,7 +12,7 @@ def verify_user(email):
         of an employee.    
     '''
     
-    db_users = pd.read_csv(r'csv_file/db_users.csv')
+    db_users = pd.read_csv(r'csv_files/db_users.csv')
     result = False
 
     if "@" not in email:

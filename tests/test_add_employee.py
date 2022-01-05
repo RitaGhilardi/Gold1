@@ -32,9 +32,9 @@ class Test(unittest.TestCase):
         
     def test_invalid_inputs(self):
         self.assertFalse(add_employee(self.f_mail1, self.pass_empl))
-        #self.assertFalse(add_employee(self.mail_empl, self.f_password1))
+        self.assertFalse(add_employee(self.mail_empl, self.f_password1))
         self.assertFalse(add_employee(self.f_mail2, self.pass_empl))
-        #self.assertFalse(add_employee(self.mail_empl, self.f_password2))
+        self.assertFalse(add_employee(self.mail_empl, self.f_password2))
         
         
       

@@ -9,8 +9,8 @@ def get_number():
     while cc is False:
 
         number = str(input('Please insert your credit card number.'
-                           'It should be composed by 16 number and no'
-                           'letters or symbols. \n'))
+                           ' It should be composed by 16 number and no'
+                           ' letters or symbols. \n'))
 
         good = False
 
@@ -47,8 +47,8 @@ def get_number():
 
         elif i >= 2:
             print('Fatal error, the credit card number is not on the'
-                  'correct format and you reached the limit of chances'
-                  'that you had. Try again to register to our website. \n')
+                  ' correct format and you reached the limit of chances'
+                  ' that you had. Try again to register to our website. \n')
             break
 
         # Increase i if the input was wrong

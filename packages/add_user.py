@@ -16,11 +16,11 @@ def add_user(email, password, number, date, cvc):
                
     if number is None or date is None or cvc is None:
         print('Something in the registration process'
-              'went wrong. Please try again. \n')
+              ' went wrong. Please try again. \n')
     else:
         print('You successfully registered. Now'
               ' you are allowed to buy metals. \n')
-        db_users = pd.read_csv(r'csv_file/db_users.csv')
+        db_users = pd.read_csv(r'csv_files/db_users.csv')
         
         # Generate the random ID without call too many times
         # Generate a random in an interval with no valid ID
@@ -51,9 +51,9 @@ def add_user(email, password, number, date, cvc):
         new = pd.DataFrame({"ID": [Id], "email": [email],
                             "password": [digest_password]})
         db_users = db_users.append(new)
-        db_users.to_csv(r'csv_file/db_users.csv', index=False)
-        info = pd.read_csv(r'csv_file/info_users.csv')
+        db_users.to_csv(r'csv_files/db_users.csv', index=False)
+        info = pd.read_csv(r'csv_files/info_users.csv')
         new = pd.DataFrame({"ID": [Id], "number": [number],
                             "date": [date], "cvc": [cvc]})
         info = info.append(new)
-        info.to_csv(r'csv_file/info_users.csv', index=False)
+        info.to_csv(r'csv_files/info_users.csv', index=False)

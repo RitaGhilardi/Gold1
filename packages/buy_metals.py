@@ -47,21 +47,21 @@ def buy_metal(client, metal, quantity, check):
         # Say that we don't trade the metal
         print('Sorry, the metal that you want to buy is not traded by us.'
               '\n You can buy from us Gold, Silver, Platinum,'
-              'Palladium and Rhodium. \n')
+              ' Palladium and Rhodium. \n')
 
     elif valid is False:
         print('Error, you typed a letter or a special character'
-              'in the quantity, we are able to trade only grams. \n')
+              ' in the quantity, we are able to trade only grams. \n')
 
     elif int(quantity) == 0:
         print('Sorry, but it is impossible to buy 0 grams of any metal.'
-              'Please insert a valid number. \n')
+              ' Please insert a valid number. \n')
 
     elif int(quantity) > 1000:
         # Say if the quantity requested is too much
         print('We are sorry, we are not able to supply'
-              'you this amount of ', metal, '. We can supply'
-              'you at most 1 kg. \n')
+              ' you this amount of ', metal, '. We can supply'
+              ' you at most 1 kg. \n')
 
     else:
 
@@ -120,10 +120,10 @@ def buy_metal(client, metal, quantity, check):
 
             if success is False:
                 print('We are sorry, because of an internal problem we are'
-                      'not able to buy enough metal now. If you'
-                      'make an order of at most', df.loc[i, 'Quantity'],
+                      ' not able to buy enough metal now. If you'
+                      ' make an order of at most', df.loc[i, 'Quantity'],
                       ' ', metal, ' we will be able to'
-                      'provide it to you. \n')
+                      ' provide it to you. \n')
 
             else:
 
