@@ -79,10 +79,8 @@ if addemployee is True:
     
     cp = check_password(password)
     
-    if cp is False:
-        print('We are sorry, but the two password do not coincide. \n Please try again')
+    if cp is True:
     
-    else:    
         #The two passwords were equal, so we proceed to the registration
         #The validity of the email is different, so we check it in the function
         

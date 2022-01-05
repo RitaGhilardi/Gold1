@@ -12,38 +12,50 @@ def verify_user(email):
         of an employee.    
     '''
     
-    db_users = pd.read_csv(r'csv_files/db_users.csv')
     result = False
-
-    if "@" not in email:
-        print("Please enter a valid email. \n")
-
+    
+    if type(email) is not str:
+        
+        #Something wrong happened
+        
+        print('ERROR: one of the input is in an unexpected type.',
+            'Please contact the customer service to notify the error. \n')
+    
     else:
-        suffix = email.split("@")[1]
+        
+        #The input are of the correct type
+        
+        db_users = pd.read_csv(r'csv_files/db_users.csv')    
 
-        if suffix == "gold1.com":
-            print("Invalid email, please register as a user. \n")
+        if "@" not in email:
+            print("Please enter a valid email. \n")
 
         else:
-            try:
-                valid = validate_email(email)
-                email = valid.email
+            suffix = email.split("@")[1]
 
-                # Check if the email is already registered
+            if suffix == "gold1.com":
+                print("Invalid email, please register as a user. \n")
 
-                presence = False
+            else:
+                try:
+                    valid = validate_email(email)
+                    email = valid.email
 
-                for i in range(len(db_users)):
-                    if email == db_users.loc[i, 'email']:
-                        presence = True
-                        print('The email is already associated'
-                              ' to an account. \n')
+                    # Check if the email is already registered
 
-                if presence is False:
-                    result = True
-                    print('Your email was accepted. \n')
-                        
-            except EmailNotValidError as e:
-                print(str(e))
+                    presence = False
+
+                    for i in range(len(db_users)):
+                        if email == db_users.loc[i, 'email']:
+                            presence = True
+                            print('The email is already associated'
+                                  ' to an account. \n')
+
+                    if presence is False:
+                        result = True
+                        print('Your email was accepted. \n')
+                            
+                except EmailNotValidError as e:
+                    print(str(e))
 
     return result
