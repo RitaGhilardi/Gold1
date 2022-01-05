@@ -17,15 +17,16 @@ class Test(unittest.TestCase):
         self.mail2 = "robertoceli@gmail.com"
         self.metal1 = "Silver"
         self.metal2 = "silver"
-        self.quantity1 = "1"
-        self.quantity2 = "1000"
+        self.quantity1 = 1
+        self.quantity2 = 1000
         self.check = True
         
         # invalid inputs
         self.f_metal1 = "Wood"
         self.f_metal2 = ""
-        self.f_quantity1 = "-2"
-        self.f_quantity2 = "0"
+        self.f_quantity1 = -2
+        self.f_quantity2 = 0
+        self.f_quantity3 = "12"
         self.f_check = False
         
     def test_valid_inputs(self):
@@ -45,6 +46,7 @@ class Test(unittest.TestCase):
         self.assertFalse(buy_metal(self.mail1, self.metal1, self.f_quantity1, self.check))
         self.assertFalse(buy_metal(self.mail1, self.f_metal2, self.quantity1, self.check))
         self.assertFalse(buy_metal(self.mail1, self.metal1, self.f_quantity2, self.check))
+        self.assertFalse(buy_metal(self.mail1, self.metal1, self.f_quantity3, self.check))
         self.assertFalse(buy_metal(self.mail1, self.metal1, self.quantity1, self.f_check))
 
 
