@@ -60,8 +60,7 @@ def add_employee(email, password):
                         db_employees.to_csv(r'csv_files/db_employees.csv',
                                             index=False)
                         result = True
-                        print("Registration was successful!. \n")
-
+                        
                         break
 
                 if presence is False:
