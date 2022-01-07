@@ -55,7 +55,7 @@ def ask_cvc(user):
             if valid is True:
                 nnumber = int(number)
                 if len(number) == 3 and nnumber > 0 and nnumber <= 999:
-                    if nnumber == stored:
+                    if nnumber is stored:
                         good = True
                     else:
                         print('Sorry, the cvc is not correct. \n')
