@@ -1,19 +1,18 @@
-#! /usr/bin/env python3
 import argparse
 
-from packages.log_in import log_in 
-from packages.add_employee import add_employee 
-from packages.add_user import add_user 
-from packages.buy_metals import buy_metal 
+from packages.log_in import log_in
+from packages.add_employee import add_employee
+from packages.add_user import add_user
+from packages.buy_metals import buy_metal
 from packages.pay_loan import pay_loan
-from packages.read_register import read_register 
+from packages.read_register import read_register
 from packages.get_balance import get_balance
 from packages.check_password import check_password
 from packages.get_number import get_number
 from packages.get_date import get_date
 from packages.get_cvc import get_cvc
-from packages.check_cvc import ask_cvc 
-from packages.verify_user import verify_user 
+from packages.check_cvc import ask_cvc
+from packages.verify_user import verify_user
 
 
 def parse_arguments():
@@ -69,48 +68,48 @@ adduser = arg.add_user
 addemployee = arg.add_employee
 e = arg.employee_actions
 
-#First of all, we check if the user wants to register or log in
+# First of all, we check if the user wants to register or log in
 log = None
 print('\n')
 
 if addemployee is True:
 
-    #The user wants to register as an employee, so we ask again the password
-    
+    # The user wants to register as an employee, so we ask again the password
+
     cp = check_password(password)
-    
+
     if cp is True:
-    
-        #The two passwords were equal, so we proceed to the registration
-        #The validity of the email is different, so we check it in the function
-        
-        add_e = add_employee(username,password)
-        
+
+        # The two passwords were equal, so we proceed to the registration
+        # The validity of the email is different get checked by the function
+
+        add_e = add_employee(username, password)
+
         if add_e is True:
             print("The registration was successful! \n")
-        
+
 elif adduser is True:
-    
-    #The user wants to register as a client, so we first of all verify the email
-    
+
+    # The user wants to register as a client, we first of all verify the email
+
     valid_mail = verify_user(username)
-    
+
     if valid_mail is True:
-    
-        #The email in in the correct format and allowed to be registered
-        #We check the password
-        
+
+        # The email in in the correct format and allowed to be registered
+        # We check the password
+
         cp = check_password(password)
-        
+
         if cp is True:
-            
-            #The two passwords are the same, we ask data on the credit card
-            #The functions on credit card control the format of input
-            
+
+            # The two passwords are the same, we ask data on the credit card
+            # The functions on credit card control the format of input
+
             number = get_number()
             date = get_date()
             cvc = get_cvc()
-            add_user(username,password, number, date, cvc)
+            add_user(username, password, number, date, cvc)
 else:
     log = log_in(username, password)
 
@@ -138,11 +137,11 @@ if log is not None:
         if metal is None:
             print('To buy metals you have to specify'
                   'them using --buy_metal. \n')
-                  
+
         elif grams is None:
             print('To buy metals you have to specify'
                   'the grams you want using --buy_grams. \n')
-                  
+
         else:
             check_cvc = ask_cvc(username)
             buy_metal(username, metal, grams, check_cvc)

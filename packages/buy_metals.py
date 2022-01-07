@@ -9,27 +9,30 @@ def buy_metal(client, metal, quantity, check):
     ''' This function get called after the check done by the log_in function,
         so we are sure that the user is correctly registered into our database.
         The function buy sell to the client the amount of metal requested by
-        the client. If we do not have enough metal in our inventory, this function 
-        call "get_prices" to refill the inventory before the user's purchase.
-    ''' 
-    
+        the client. If we do not have enough metal in our inventory, this
+        function call "get_prices" to refill the inventory before the user's
+        purchase.
+    '''
+
     result = False
-    
-    #We check that the inputs are of the right format
-    #This control should be unnecessary because the main pass the correct type of inputs
-    #This control is due to avoid possible errors during the tesing phase
-    
-    if type(client) is not str or type(metal) is not str or type(quantity) is not int or type(check) is not bool:
-        
-        #Something wrong happened
-        
+
+    # We check that the inputs are of the right format
+    # This control should be unnecessary because the main pass the correct type
+    # of inputs. This control is due to avoid possible errors during the tesing
+    # phase.
+
+    if (type(client) is not str or type(metal) is not str
+            or type(quantity) is not int or type(check) is not bool):
+
+        # Something wrong happened
+
         print('ERROR: one of the input is in an unexpected type.',
-            'Please contact the customer service to notify the error. \n')
-    
+              'Please contact the customer service to notify the error. \n')
+
     else:
-        
-        #The input are of the correct type
-        
+
+        # The input are of the correct type
+
         # Open the inventory
         df = pd.read_csv(r'csv_files/inventory.csv')
 
@@ -89,10 +92,10 @@ def buy_metal(client, metal, quantity, check):
 
             if quantity <= df.loc[i, 'Quantity']:
 
-                # We have enough metal, we can sell it without buying it
-                # We ask to type the cvc of the credit card to confirm the purchase
+                # We have enough metal, we can sell it without buying it.
+                # We ask to type the cvc of the credit card to confirm
+                # the purchase
 
-                
                 if check is False:
                     success = False
                     print('We are sorry, the purchase was abort. \n')
@@ -122,14 +125,16 @@ def buy_metal(client, metal, quantity, check):
 
                 # Buy new metal to have the inventory full
 
-                print('We are buying new metals for you, wait a second please. \n')
+                print('We are buying new metals for you,',
+                      'wait a second please. \n')
 
                 # Call the function get prices to call the API
                 # We're buying new metal at the actual price
 
                 success, new = get_prices()
 
-                # Check if the API is online and so we are able to buy new metal
+                # Check if the API is online and so we are able to buy
+                # new metal
 
                 if success is False:
                     print('We are sorry, because of an internal problem we are'
@@ -147,7 +152,7 @@ def buy_metal(client, metal, quantity, check):
                         print('We are sorry, the purchase was abort. \n')
 
                     else:
-                        # We've just bought new metal, need to update the inventory
+                        # Calculate quantity to purchase
 
                         p1 = df.loc[i, 'Price']
                         q1 = df.loc[i, 'Quantity']
@@ -161,11 +166,11 @@ def buy_metal(client, metal, quantity, check):
 
                             # Ask a loan to be able to buy the new metals
 
-                            delta = acq_price - w.loc[0, 'Balance']
-                            w.loc[0, 'Bank_Loan'] = w.loc[0, 'Bank_Loan'] + delta
-                            w.loc[0, 'Balance'] = w.loc[0, 'Balance'] + delta
+                            d = acq_price - w.loc[0, 'Balance']
+                            w.loc[0, 'Bank_Loan'] = w.loc[0, 'Bank_Loan'] + d
+                            w.loc[0, 'Balance'] = w.loc[0, 'Balance'] + d
 
-                        # Calculate the weighted mean of the price and update it
+                        # Calculate the weighted mean of the price and update
 
                         new_p = round((((p1 * q1) + (p2 * q2)) / 1000), 3)
                         df.loc[i, 'Price'] = new_p
@@ -205,7 +210,8 @@ def buy_metal(client, metal, quantity, check):
                 # Create a new row
 
                 add = pd.DataFrame(columns=['Customer',
-                                            'Date', 'Metal', 'Quantity', 'Price'])
+                                            'Date', 'Metal', 'Quantity',
+                                            'Price'])
                 add.loc[0] = [client, d1, metal, quantity, p]
 
                 # Add the new row
