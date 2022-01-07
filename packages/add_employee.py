@@ -1,70 +1,89 @@
 import pandas as pd
 import argparse
 import hashlib
-from email_validator import validate_email, EmailNotValidError
+from email_validator import validate_email
+from email_validator import EmailNotValidError
 
-from packages.check_password import check_password
 
 
 def add_employee(email, password):
-    df_employees = pd.read_csv(r'csv_files/employees.csv')
-    db_employees = pd.read_csv(r'csv_files/db_employees.csv')
 
-# Check if the mail is valid format
+    ''' This function add an employee to the csv "db_employees.csv"
+        that is necessary for an employee to log in.
+        This function control that the email of the employee
+        is allowed and that the employee is not already registered.
+    '''
 
     result = False
 
-    try:
-        valid = validate_email(email)
-        email = valid.email
+    if type(email) is not str or type(password) is not str:
 
-        # Check if the domain is the correct one
-        if "@gold1.com" not in email:
-            print("Please enter an employee email. \n")
+        #Something wrong happened
 
-        else:
-            check = False
-            # Check if the employee is already registered
-            for mail in db_employees["email"]:
-                if mail == email:
-                    check = True
-                    print("This account is already registered. \n")
-                    break
+        print('ERROR: one of the input is in an unexpected type.',
+            'Please contact the customer service to notify the error. \n')
 
-            # Check if the email is in the one allowed
-            # to register as an employee
-            if check is False:
-                presence = False
-                for mail in df_employees["email"]:
-                    if email == mail:
-                        presence = True
-                        print('Your email allows you to'
-                              'register as an employee. \n')
+    else:
 
-                        # Ask the employee to confirm the password
-                        # he want to use
-                        password_check = check_password(password)
-                        if password_check is True:
+        #The input are of the correct type
+
+        df_employees = pd.read_csv(r'csv_files/employees.csv')
+        db_employees = pd.read_csv(r'csv_files/db_employees.csv')
+
+        # Check if the mail is valid format
+
+        try:
+            valid = validate_email(email)
+            email = valid.email
+
+            # Check if the domain is the correct one
+
+            if "@gold1.com" not in email:
+                print("Please enter an employee email. \n")
+
+            elif len(password) < 6:
+                print("Please, try again and choose a password of at least 6 characters. \n")
+
+            else:
+                check = False
+
+                # Check if the employee is already registered
+
+                for mail in db_employees["email"]:
+                    if mail == email:
+                        check = True
+                        print("This account is already registered. \n")
+                        break
+
+                # Check if the email is allowed to register as an employee
+
+                if check is False:
+                    presence = False
+                    for mail in df_employees["email"]:
+                        if email == mail:
+                            presence = True
+                            print('You are allowed to '
+                                  'register as an employee. \n')
 
                             # Register the employee
-                            digest_password = hashlib.sha256(
-                                password.encode('utf-8')).hexdigest()
-                            new_df = pd.DataFrame(
-                                {"email": [email],
-                                    "password": [digest_password]})
+
+                            digest_pass = hashlib.sha256(password.encode
+                                                         ('utf-8')).hexdigest()
+                            new_df = pd.DataFrame({"email": [email],
+                                                  "password": [digest_pass]})
                             db_employees = db_employees.append(new_df)
                             db_employees.to_csv(r'csv_files/db_employees.csv',
                                                 index=False)
                             result = True
-                        print("Registration was successful!. \n")
-                    break
 
-                if presence is False:
-                    print("We are sorry, this email is not allowed"
-                          "to register as an employee. \n")
+                            break
 
-    except EmailNotValidError as e:
+                    if presence is False:
+                        print("We are sorry, this email is not allowed"
+                              " to register as an employee. \n")
 
-        print(str(e))
+        except EmailNotValidError as e:
+
+            print(str(e))
 
     return result
