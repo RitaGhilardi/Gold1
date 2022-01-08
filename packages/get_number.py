@@ -1,6 +1,5 @@
 def get_number():
 
-
     # Set some parameters for the while cycle
 
     cc = False

@@ -4,8 +4,6 @@ import hashlib
 from email_validator import validate_email
 from email_validator import EmailNotValidError
 
-
-
 def add_employee(email, password):
 
     ''' This function add an employee to the csv "db_employees.csv"
@@ -20,8 +18,8 @@ def add_employee(email, password):
 
         # Something wrong happened
 
-        print('ERROR: one of the input is in an unexpected type. ',
-            'Please contact the customer service to notify the error. \n')
+        print('ERROR: one of the input is in an unexpected type.',
+              'Please contact the customer service to notify the error. \n')
 
     else:
 
@@ -42,7 +40,8 @@ def add_employee(email, password):
                 print("Please enter an employee email. \n")
 
             elif len(password) < 6:
-                print("Please, try again and choose a password of at least 6 characters. \n")
+                print("Please, try again and choose a "
+                      "password of at least 6 characters. \n")
 
             else:
                 check = False
