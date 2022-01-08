@@ -13,7 +13,7 @@ def add_user(email, password, number, date, cvc):
         the informations of the new user's credit card on the dataset
         "info_users.csv".
     '''
-        
+
     if number is None or date is None or cvc is None:
         print('Something in the registration process'
               ' went wrong. Please try again. \n')

@@ -4,6 +4,7 @@ import hashlib
 from email_validator import validate_email
 from email_validator import EmailNotValidError
 
+
 def add_employee(email, password):
 
     ''' This function add an employee to the csv "db_employees.csv"
