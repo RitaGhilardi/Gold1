@@ -11,9 +11,9 @@ def add_user(email, password, number, date, cvc):
     ''' This function add a user to the csv "db_users.csv",
         that is necessary for an employee to log in, and to register
         the informations of the new user's credit card on the dataset
-        "info_users.csv".   
+        "info_users.csv".
     '''
-               
+        
     if number is None or date is None or cvc is None:
         print('Something in the registration process'
               ' went wrong. Please try again. \n')
@@ -21,7 +21,7 @@ def add_user(email, password, number, date, cvc):
         print('You successfully registered. Now'
               ' you are allowed to buy metals. \n')
         db_users = pd.read_csv(r'csv_files/db_users.csv')
-        
+
         # Generate the random ID without call too many times
         # Generate a random in an interval with no valid ID
         # ID with min 1 and max 99999999
