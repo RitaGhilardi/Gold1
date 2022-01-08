@@ -12,7 +12,7 @@ from packages.buy_metals import buy_metal
 class Test(unittest.TestCase):
     def setUp(self):
 
-        # VSalid inputs
+        # Valid inputs
         self.mail1 = "giada.rovari@gmail.com"
         self.mail2 = "robertoceli@gmail.com"
         self.metal1 = "Silver"

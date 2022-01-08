@@ -18,14 +18,14 @@ def add_employee(email, password):
 
     if type(email) is not str or type(password) is not str:
 
-        #Something wrong happened
+        # Something wrong happened
 
-        print('ERROR: one of the input is in an unexpected type.',
+        print('ERROR: one of the input is in an unexpected type. ',
             'Please contact the customer service to notify the error. \n')
 
     else:
 
-        #The input are of the correct type
+        # The input are of the correct type
 
         df_employees = pd.read_csv(r'csv_files/employees.csv')
         db_employees = pd.read_csv(r'csv_files/db_employees.csv')
