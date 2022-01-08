@@ -2,22 +2,24 @@ def check_password(pw):
 
     ''' This function get called by the two registering functions.
         The aim of this function is to ask to the user to insert
-        again the password that will be registered, like all 
+        again the password that will be registered, like all
         website does.
     '''
-    
+
     # Set some parameters for the while cycle
 
     c = False
 
-    if len(pw) < 6:  
-        print("Please, try again and choose a password of at least 6 characters. \n")
-    
-    else:    
+    if len(pw) < 6:
+        print("Please, try again and choose a
+              "password of at least 6 characters. \n")
+
+    else:
         i = 0
         while c is False:
 
-            check = str(input('Enter again the password to verify it and continue the registration process. \n'))
+            check = str(input('Enter again the password to verify
+                              'it and continue the registration process. \n'))
 
             # Check if the password are the same
 
@@ -40,4 +42,3 @@ def check_password(pw):
                       'enter again the password. \n')
 
     return c
-    

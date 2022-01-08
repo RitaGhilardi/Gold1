@@ -5,14 +5,14 @@ def read_register():
         done by the company.
     '''
 
-    #Open the register
+    # Open the register
 
     import pandas as pd
     register = pd.read_csv(r'csv_files/register.csv')
 
     print('Register of transactions: \n')
 
-    #Print each line
+    # Print each line
 
     for i in range(len(register.index)):
         print('On', register.loc[i, 'Date'], 'the customer',
