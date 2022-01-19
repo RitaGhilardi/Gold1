@@ -11,14 +11,14 @@ def check_password(pw):
     c = False
 
     if len(pw) < 6:
-        print("Please, try again and choose a
+        print("Please, try again and choose a"
               "password of at least 6 characters. \n")
 
     else:
         i = 0
         while c is False:
 
-            check = str(input('Enter again the password to verify
+            check = str(input('Enter again the password to verify'
                               'it and continue the registration process. \n'))
 
             # Check if the password are the same

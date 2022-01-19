@@ -51,13 +51,9 @@ def buy_metal(client, metal, quantity, check):
 
         # Check if quantity contains only numbers, and so it is an integer
 
-        int_number = '0123456789'
-        sq = str(quantity)
         valid = True
-        for n in sq:
-            if n not in int_number:
-                valid = False
-                break
+        if quantity < 1:
+            valid = False
 
         if presence is False:
             # Say that we don't trade the metal
@@ -66,8 +62,7 @@ def buy_metal(client, metal, quantity, check):
                   ' Palladium and Rhodium. \n')
 
         elif valid is False:
-            print('Error, you typed a letter or a special character'
-                  ' in the quantity, we are able to trade only grams. \n')
+            print('Error, you typed a negative quantity or zero. \n')
 
         elif int(quantity) == 0:
             print('Sorry, but it is impossible to buy 0 grams of any metal.'
@@ -83,8 +78,6 @@ def buy_metal(client, metal, quantity, check):
 
             # Metal and quantity are ok,
             # We open the wallet and change quantity to an integer
-
-            quantity = int(quantity)
 
             w = pd.read_csv(r'csv_files/wallet.csv')
 
@@ -111,8 +104,8 @@ def buy_metal(client, metal, quantity, check):
 
                     # Record on the wallet the cash inflow and new balance
 
-                    w.loc[0, 'Inflow'] = w.loc[0, 'Inflow'] + p
-                    w.loc[0, 'Balance'] = w.loc[0, 'Balance'] + p
+                    w.loc[0, 'Inflow'] = round((w.loc[0, 'Inflow'] + p), 3)
+                    w.loc[0, 'Balance'] = round((w.loc[0, 'Balance'] + p), 3)
 
                     # Succesful transaction
 
@@ -177,8 +170,8 @@ def buy_metal(client, metal, quantity, check):
 
                         # Register the cash outflow
 
-                        w.loc[0, 'Outflow'] = w.loc[0, 'Outflow'] + acq_price
-                        w.loc[0, 'Balance'] = w.loc[0, 'Balance'] - acq_price
+                        w.loc[0, 'Outflow'] = round((w.loc[0, 'Outflow'] + acq_price), 3)
+                        w.loc[0, 'Balance'] = round((w.loc[0, 'Balance'] - acq_price), 3)
                         df.loc[i, 'Quantity'] = 1000 - quantity
 
                         # Calculate the selling price with a profit of 5%
@@ -187,8 +180,8 @@ def buy_metal(client, metal, quantity, check):
 
                         # Register cash inflow and new balance
 
-                        w.loc[0, 'Inflow'] = w.loc[0, 'Inflow'] + p
-                        w.loc[0, 'Balance'] = w.loc[0, 'Balance'] + p
+                        w.loc[0, 'Inflow'] = round((w.loc[0, 'Inflow'] + p), 3)
+                        w.loc[0, 'Balance'] = round((w.loc[0, 'Balance'] + p), 3)
 
                         # Succesful transaction
 

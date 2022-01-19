@@ -9,8 +9,8 @@ def ask_cvc(user):
         user to insert it again (maximum 3 times) and verify it.
     '''
 
-    user_df = pd.read_csv(r'csv_file/db_users.csv')
-    cvc_df = pd.read_csv(r'csv_file/info_users.csv')
+    user_df = pd.read_csv(r'csv_files/db_users.csv')
+    cvc_df = pd.read_csv(r'csv_files/info_users.csv')
     check = False
 
     # Search the ID using the username.
@@ -55,7 +55,7 @@ def ask_cvc(user):
             if valid is True:
                 nnumber = int(number)
                 if len(number) == 3 and nnumber > 0 and nnumber <= 999:
-                    if nnumber is stored:
+                    if nnumber == stored:
                         good = True
                     else:
                         print('Sorry, the cvc is not correct. \n')

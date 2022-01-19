@@ -35,7 +35,7 @@ def verify_user(email):
             suffix = email.split("@")[1]
 
             if suffix == "gold1.com":
-                print("Invalid email, please register as a user. \n")
+                print("Error, this is an employee's email. \n")
 
             else:
                 try:

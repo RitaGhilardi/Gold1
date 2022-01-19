@@ -40,8 +40,8 @@ def parse_arguments():
                         "The metals that we trade are Gold, Silver, Palladium,"
                         "Platinum, Rhodium. (this argument must be"
                         "used with bq) ", type=str,
-                        choices=["Gold", "Silver", "Palladium",
-                                 "Platinum", "Rhodium"])
+                        choices=["gold", "silver", "palladium",
+                                 "platinum", "rhodium"])
 
     parser.add_argument("-bg", "--buy_grams", default=None,
                         help="Specify the grams that you want to buy."
@@ -67,6 +67,8 @@ grams = arg.buy_grams
 adduser = arg.add_user
 addemployee = arg.add_employee
 e = arg.employee_actions
+
+username=username.lower()
 
 # First of all, we check if the user wants to register or log in
 log = None
