@@ -68,7 +68,7 @@ adduser = arg.add_user
 addemployee = arg.add_employee
 e = arg.employee_actions
 
-username=username.lower()
+username = username.lower()
 
 # First of all, we check if the user wants to register or log in
 log = None

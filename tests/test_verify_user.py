@@ -11,7 +11,7 @@ from packages.verify_user import verify_user
 class Test(unittest.TestCase):
 
     def setUp(self):
-        
+
         ''' The setup() function runs when the program starts.
             It is used to set the initial environment properties.
         '''
@@ -30,19 +30,21 @@ class Test(unittest.TestCase):
         self.f_mail6 = "anna@me"
 
     def test_valid_inputs(self):
-    
-        ''' This function tests the valid inputs of the verify_user() function.
+
+        ''' This function tests the valid inputs
+            of the verify_user() function.
         '''
-        
+
         self.assertTrue(verify_user(self.user1))
         self.assertTrue(verify_user(self.user2))
         self.assertTrue(verify_user(self.user3))
 
     def test_invalid_inputs(self):
-    
-        ''' This function tests the invalid inputs of the verify_user() function.
+
+        ''' This function tests the invalid inputs
+            of the verify_user() function.
         '''
-        
+
         self.assertFalse(verify_user(self.f_mail1))
         self.assertFalse(verify_user(self.f_mail2))
         self.assertFalse(verify_user(self.f_mail3))

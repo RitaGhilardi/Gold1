@@ -1,7 +1,7 @@
 def get_cvc():
 
     ''' This is one of the functions called during the registering of a new
-        user. This function ask the user to insert the cvc of its credit 
+        user. This function ask the user to insert the cvc of its credit
         card (maximum 3 times), check its validity and return it.
     '''
 

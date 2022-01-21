@@ -12,7 +12,7 @@ from packages.buy_metals import buy_metal
 class Test(unittest.TestCase):
 
     def setUp(self):
-    
+
         ''' The setup() function runs when the program starts.
             It is used to set the initial environment properties.
         '''
@@ -35,10 +35,11 @@ class Test(unittest.TestCase):
         self.f_check = False
 
     def test_valid_inputs(self):
-    
-        ''' This function tests the valid inputs of the buy_metal() function.
+
+        ''' This function tests the valid inputs
+            of the buy_metal() function.
         '''
-        
+
         self.assertTrue(buy_metal(self.mail1, self.metal1, self.quantity1,
                                   self.check))
         self.assertTrue(buy_metal(self.mail2, self.metal2, self.quantity2,
@@ -52,10 +53,10 @@ class Test(unittest.TestCase):
     # log_in(), so the user has been already verified.
 
     def test_invalid_inputs(self):
-    
+
         ''' This function tests the invalid inputs of the buy_metal() function.
         '''
-        
+
         self.assertFalse(buy_metal(self.mail1, self.f_metal1, self.quantity1,
                                    self.check))
         self.assertFalse(buy_metal(self.mail1, self.metal1, self.f_quantity1,

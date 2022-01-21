@@ -1,9 +1,10 @@
 from datetime import date
 
+
 def get_date():
 
     ''' This is one of the functions called during the registering of a new
-        user. This function ask the user to insert the expiring date of its 
+        user. This function ask the user to insert the expiring date of its
         credit card (maximum 3 times), check its validity and return it.
     '''
 
@@ -71,7 +72,7 @@ def get_date():
                         good = True
 
                 else:
-                    print('Error, the data that you typed are not of the right',
+                    print('Error, the data you typed are not of the right',
                           'format or is no more valid. Enter a valid date',
                           'on the format mm and then yyyy. \n')
             else:

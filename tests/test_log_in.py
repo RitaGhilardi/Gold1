@@ -11,7 +11,7 @@ from packages.log_in import log_in
 class Test(unittest.TestCase):
 
     def setUp(self):
-    
+
         ''' The setup() function runs when the program starts.
             It is used to set the initial environment properties.
         '''
@@ -29,18 +29,20 @@ class Test(unittest.TestCase):
         self.f_password_empl = "Heidi1"
 
     def test_valid_inputs(self):
-    
-        ''' This function tests the valid inputs of the log_in() function.
+
+        ''' This function tests the valid inputs
+            of the log_in() function.
         '''
-    
+
         self.assertTrue(log_in(self.email_user, self.password_user))
         self.assertTrue(log_in(self.email_empl, self.password_empl))
 
     def test_invalid_inputs(self):
-    
-        ''' This function tests the invalid inputs of the log_in() function.
+
+        ''' This function tests the invalid inputs
+            of the log_in() function.
         '''
-        
+
         self.assertFalse(log_in(self.email_user, self.f_password_user))
         self.assertFalse(log_in(self.f_email_user, self.password_user))
         self.assertFalse(log_in(self.email_empl, self.f_password_empl))

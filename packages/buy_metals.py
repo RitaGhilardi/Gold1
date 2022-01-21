@@ -170,8 +170,10 @@ def buy_metal(client, metal, quantity, check):
 
                         # Register the cash outflow
 
-                        w.loc[0, 'Outflow'] = round((w.loc[0, 'Outflow'] + acq_price), 3)
-                        w.loc[0, 'Balance'] = round((w.loc[0, 'Balance'] - acq_price), 3)
+                        w.loc[0, 'Outflow'] = round(
+                                        (w.loc[0, 'Outflow'] + acq_price), 3)
+                        w.loc[0, 'Balance'] = round(
+                                        (w.loc[0, 'Balance'] - acq_price), 3)
                         df.loc[i, 'Quantity'] = 1000 - quantity
 
                         # Calculate the selling price with a profit of 5%
@@ -181,7 +183,8 @@ def buy_metal(client, metal, quantity, check):
                         # Register cash inflow and new balance
 
                         w.loc[0, 'Inflow'] = round((w.loc[0, 'Inflow'] + p), 3)
-                        w.loc[0, 'Balance'] = round((w.loc[0, 'Balance'] + p), 3)
+                        w.loc[0, 'Balance'] = round(
+                                        (w.loc[0, 'Balance'] + p), 3)
 
                         # Succesful transaction
 
