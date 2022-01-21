@@ -1,5 +1,10 @@
 def get_number():
 
+    ''' This is one of the functions called during the registering of a new
+        user. This function ask the user to insert the enumber of its credit
+        card (maximum 3 times), check its validity and return it.
+    '''
+
     # Set some parameters for the while cycle
 
     cc = False
@@ -7,9 +12,9 @@ def get_number():
 
     while cc is False:
 
-        number = str(input('Please insert your credit card number.'
-                           ' It should be composed by 16 number and no'
-                           ' letters or symbols. \n'))
+        number = str(input('Please insert your credit card number.',
+                           'It should be composed by 16 number and no',
+                           'letters or symbols. \n'))
 
         good = False
 
@@ -45,9 +50,9 @@ def get_number():
         # Check if the user tried more than 3 times to enter the input
 
         elif i >= 2:
-            print('Fatal error, the credit card number is not on the'
-                  ' correct format and you reached the limit of chances'
-                  ' that you had. Try again to register to our website. \n')
+            print('Fatal error, the credit card number is not on the',
+                  'correct format and you reached the limit of chances',
+                  'that you had. Try again to register to our website. \n')
             break
 
         # Increase i if the input was wrong

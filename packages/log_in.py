@@ -66,7 +66,7 @@ def log_in(email, password):
                           .index(address) == len(db_employees["email"])-1):
                         print('We are sorry, but your employee account'
                               ' does not exist. Register to our website'
-                              ' before logging in.')
+                              ' before log in.')
                     else:
                         continue
 
@@ -94,7 +94,7 @@ def log_in(email, password):
                     elif (mail != email and list(db_users["email"])
                           .index(mail) == len(db_users["email"])-1):
                         print('We are sorry but your account does not exist. '
-                              'Please register yourself before log in')
+                              'Please register yourself before log in.')
 
         except EmailNotValidError as e:
             print(str(e))

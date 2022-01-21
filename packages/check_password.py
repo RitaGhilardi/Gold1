@@ -11,14 +11,14 @@ def check_password(pw):
     c = False
 
     if len(pw) < 6:
-        print("Please, try again and choose a"
+        print("Please, try again and choose a",
               "password of at least 6 characters. \n")
 
     else:
         i = 0
         while c is False:
 
-            check = str(input('Enter again the password to verify'
+            check = str(input('Enter again the password to verify',
                               'it and continue the registration process. \n'))
 
             # Check if the password are the same
@@ -30,7 +30,7 @@ def check_password(pw):
             # Check if the user tried more than 3 times to enter the input
 
             elif i >= 2:
-                print('Fatal error, the two password still not coincide. '
+                print('Fatal error, the two password still not coincide.',
                       'Please try again to register to our website. \n')
                 break
 
@@ -38,7 +38,7 @@ def check_password(pw):
 
             elif pw != check:
                 i = i + 1
-                print('The two password are not the same, '
+                print('The two password are not the same,',
                       'enter again the password. \n')
 
     return c

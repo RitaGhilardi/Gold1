@@ -1,4 +1,13 @@
+from datetime import date
+
 def get_date():
+
+    ''' This is one of the functions called during the registering of a new
+        user. This function ask the user to insert the expiring date of its 
+        credit card (maximum 3 times), check its validity and return it.
+    '''
+
+    from datetime import date
 
     # Set some parameters for the while cycle
 
@@ -6,9 +15,9 @@ def get_date():
     i = 0
 
     while cc is False:
-        m = str(input('Please insert your credit card month'
+        m = str(input('Please insert your credit card month',
                       'on which it will expire (mm). \n'))
-        y = str(input('Please insert your credit card year'
+        y = str(input('Please insert your credit card year',
                       'on which it will expire (yyyy). \n'))
 
         good = False
@@ -24,7 +33,7 @@ def get_date():
 
             for n in m:
                 if n not in int_number:
-                    valid is False
+                    valid = False
                     break
 
             for n in y:
@@ -39,7 +48,6 @@ def get_date():
                 nm = int(m)
                 ny = int(y)
 
-                from datetime import date
                 today = date.today()
 
                 # dd/mm/YY
@@ -52,21 +60,19 @@ def get_date():
                     # Check if the card is valid but expires this year
 
                     if ny == ay:
+                        from datetime import date
                         am = d1[3:5]
                         if m > am:
                             good = True
                         else:
-                            print('Error,'
-                                  'this credit card is no more valid. \n')
+                            print('This credit card is no more valid. \n')
 
                     else:
                         good = True
 
                 else:
-                    print('Error,'
-                          'the data that you typed are not of the right format'
-                          'or is no more valid.'
-                          'Please enter a valid date'
+                    print('Error, the data that you typed are not of the right',
+                          'format or is no more valid. Enter a valid date',
                           'on the format mm and then yyyy. \n')
             else:
                 print('Error, you typed a letter or a special character. \n')
@@ -81,10 +87,10 @@ def get_date():
         # Check if the user tried more than 3 times to enter the input
 
         elif i >= 2:
-            print('Fatal error,'
-                  'the credit card number is not on the correct format'
-                  'and you reached the limit of chances that you had.'
-                  'Please try again to register to our website. \n')
+            print('Fatal error, the credit card number is not on',
+                  'the correct format and you reached the limit',
+                  'of chances that you had. Please try again to',
+                  'register to our website. \n')
             break
 
         # Increase i if the input was wrong

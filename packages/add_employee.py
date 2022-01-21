@@ -9,7 +9,7 @@ def add_employee(email, password):
 
     ''' This function add an employee to the csv "db_employees.csv"
         that is necessary for an employee to log in.
-        This function control that the email of the employee
+        This function controls that the email of the employee
         is allowed and that the employee is not already registered.
     '''
 

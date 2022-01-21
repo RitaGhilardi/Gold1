@@ -34,7 +34,7 @@ def ask_cvc(user):
     i = 0
 
     while check is False:
-        number = str(input('Please insert the CVC of your credit'
+        number = str(input('Please insert the CVC of your credit',
                            'card number to confirm the purchase. \n'))
 
         good = False
@@ -60,8 +60,8 @@ def ask_cvc(user):
                     else:
                         print('Sorry, the cvc is not correct. \n')
                 else:
-                    print('We are sorry but the cvc was not'
-                          'in the correct format. It should be a number'
+                    print('We are sorry but the cvc was not',
+                          'in the correct format. It should be a number',
                           'composed of 3 digits. \n')
 
         else:
@@ -74,9 +74,9 @@ def ask_cvc(user):
         # Check if the user tried more than 3 times to enter the input
 
         elif i >= 2:
-            print('Fatal error, the credit card cvc is not'
-                  'on the correct format or is not correct,'
-                  'and you reached the limit of chances that you had.'
+            print('Fatal error, the credit card cvc is not',
+                  'on the correct format or is not correct,',
+                  'and you reached the limit of chances that you had.',
                   'Please try again to register to our website. \n')
             break
 
