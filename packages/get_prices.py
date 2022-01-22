@@ -1,5 +1,7 @@
+import requests
+
+
 def get_prices():
-    import requests
 
     ''' This function get called by the function "buy_metals" when in the
         inventory there is not enough of some metals. The function calls and

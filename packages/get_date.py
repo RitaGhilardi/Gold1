@@ -8,17 +8,15 @@ def get_date():
         credit card (maximum 3 times), check its validity and return it.
     '''
 
-    from datetime import date
-
     # Set some parameters for the while cycle
 
     cc = False
     i = 0
 
     while cc is False:
-        m = str(input('Please insert your credit card month',
+        m = str(input('Please insert your credit card month'
                       'on which it will expire (mm). \n'))
-        y = str(input('Please insert your credit card year',
+        y = str(input('Please insert your credit card year'
                       'on which it will expire (yyyy). \n'))
 
         good = False
@@ -61,7 +59,6 @@ def get_date():
                     # Check if the card is valid but expires this year
 
                     if ny == ay:
-                        from datetime import date
                         am = d1[3:5]
                         if m > am:
                             good = True
@@ -102,8 +99,8 @@ def get_date():
     # Create the output based on the inputs and all the checks
 
     if cc is False:
-        date = None
+        d = None
     else:
-        date = m+'/'+y
+        d = m+'/'+y
 
-    return date
+    return d

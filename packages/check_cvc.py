@@ -34,7 +34,7 @@ def ask_cvc(user):
     i = 0
 
     while check is False:
-        number = str(input('Please insert the CVC of your credit',
+        number = str(input('Please insert the CVC of your credit'
                            'card number to confirm the purchase. \n'))
 
         good = False

@@ -18,8 +18,8 @@ def check_password(pw):
         i = 0
         while c is False:
 
-            check = str(input('Enter again the password to verify',
-                              'it and continue the registration process. \n'))
+            check = str(input(('Enter again the password to verify'
+                              'it and continue the registration process. \n')))
 
             # Check if the password are the same
 

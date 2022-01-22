@@ -1,5 +1,4 @@
 import pandas as pd
-import argparse
 import hashlib
 import random
 from email_validator import validate_email

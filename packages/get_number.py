@@ -12,9 +12,9 @@ def get_number():
 
     while cc is False:
 
-        number = str(input('Please insert your credit card number.',
-                           'It should be composed by 16 number and no',
-                           'letters or symbols. \n'))
+        number = str(input(('Please insert your credit card number.'
+                            'It should be composed by 16 number and no'
+                            'letters or symbols. \n')))
 
         good = False
 

@@ -108,9 +108,14 @@ elif adduser is True:
             # The two passwords are the same, we ask data on the credit card
             # The functions on credit card control the format of input
 
+            number = None
+            date = None
+            cvc = None
             number = get_number()
-            date = get_date()
-            cvc = get_cvc()
+            if number is not None:
+                date = get_date()
+                if date is not None:
+                    cvc = get_cvc()
             add_user(username, password, number, date, cvc)
 else:
     log = log_in(username, password)

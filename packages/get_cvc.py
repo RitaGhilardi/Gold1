@@ -11,8 +11,8 @@ def get_cvc():
     i = 0
 
     while cc is False:
-        number = str(input('Please insert the CVC of your credit card number.',
-                           'It should be composed by 3 number and no letters',
+        number = str(input('Please insert the CVC of your credit card number.'
+                           'It should be composed by 3 number and no letters'
                            'or symbols. \n'))
 
         good = False
