@@ -48,3 +48,43 @@ At the end, the function will return “True” if the two passwords match and �
 
 ## *Verify User*
 This function checks whether a person is eligible to register as a new user in the Gold1 platform. In particular, it controls  whether the email is inserted in the right format, that is, a string, and whether the email is already present in the *db_users.csv* database. Additionally, it checks that the domain is not equal to *'@gold1.com'*, which is the one of employees. Other controls on the email inserted are also done thanks to the library *email_validator*, which more generally controls the validity of the domain and whether all the characteristics that an email has are satisfied. If the email provided passes all the controls, the user is allowed to register and the function will return True, otherwise, it will return False.
+
+## *Get number*
+This function is called by the main during the registration of a new user and has the role of getting from the user the number of its credit card. The function does not have any input and returns the credit card number in the string format. The function asks the user an input and makes some checks on it: it verifies that each character of the string is one of the ten numbers, it verifies that the length of the string is 16 and it verifies that the int number of the string is in between the accepted interval. All these checks are inside a while loop that asks the user to insert again the credit card number if some errors occur. The loop cycle allows the user to insert the number at most three times, then, if the number is still not correct, it returns *“None”*, so the main knows that the number is not  valid.
+
+## *Get date*
+The *main* calls this function during the registration process of a new user, and its major duty is to obtain the credit card expiration date. The function simply returns the month and year the credit card will expire (expressed in a string format).
+We exploit the command *input()* which allows the user to insert the card's expiration date directly from the bash. Then, a few conditions are verified on that entry: first, it confirms that the characters in the input are numerical (equivalent to one of the 10 integer values), then it ensures that the numbers inputted are in the correct format, and finally it verifies the date’s validity.
+Furthermore, the user may enter the card's details up to three times; otherwise, if the expiration date is still invalid, the program will return *'None'*, informing the *main* that the number is invalid and it will show an error message to the user.
+
+## *Get cvc*
+This is another function called by the *main* throughout the registration process of a new user, and it is used to get the CVC number of the user's credit card. As a result, the method will simply return the three-digit CVC of each new user's credit card. The function allows us to check that each string character is an integer value, that the string's length is 3, and that it fits within the acceptable range. 
+The procedures are carried out within an if/else loop which prompts the user to re-enter the CVC if anything goes wrong. The user has up to three attempts; if the CVC is still incorrect, the loop will return *'None'*, informing the main that the number is invalid.
+
+## *Add user*
+The registration of a new user is allowed by the *add_user* function, which adds a entry to the csv *db_users.csv*, that is necessary for a user to log in, and to register the information of the new user's credit card on the database *info_users.csv*.
+It starts by assigning the new user a random ID number, it computes the digest of the password created by the user, then it appends the user credentials to the existing *db_users.csv* database and, last, it appends the credit card data to the other csv file *info_users.csv*.
+At the beginning of our development, we were associating credit card data directly to the  email of the client in a single database. This wasn’t good from the security point of view because, in cases of data leakage, hackers had the credit cards data associated with the username of the user. For this reason, we improved security by having two distinct databases, one for user credentials and one for credit card information, and we anonymized the *info_users* database by associating to every user a random ID number, and then identifying the credit card associated with the user account by its ID.
+
+## *Log in*
+The *log-in* function requests in input two variables, *email* and *password*, for anyone (already registered) that is willing to access the platform. This module accesses two different databases: *db_employees.csv*, which stores the information of registered users, and *db_employees.csv*, which accounts for registered employees. The function returns a boolean variable that states if the log-in process was successful or not.
+In order to verify the emails’ format, we use a library called *email validator*; once we make sure that an email is valid, this one is stored in the variable ‘email’.
+After that, we analyze and check the email suffix to see whether the person is trying to log-in as an employee or user: if the suffix corresponds to *“gold1.com”*, then we understand that it’s trying to log in as an employee, therefore we make sure that the email, given as an input, is exactly equal to one of those found in the database (*db_employees.csv*). 
+- If there’s a match, you can proceed by checking which one is the row in which the email is stored, so that it can be possible to see its corresponding password in the csv file. As a result, we calculate the password's digest: if the password located in the row (of the csv file) corresponding to the email inserted matches the calculated digest, access is granted.
+- else: in this case, the for loop found an email correspondence, meaning that the mail is indeed in the database but the corresponding password is different (possibly, the password given as an input is wrong). This will return: *“Please check password”*.
+- If the for loop does not find correspondence with any email addresses in the database, then it will simply return: *“We're sorry but your employee account does not exist, please register to our website before log in”*.
+
+In terms of users, if the email suffix is not *@gold1.com*, that person is automatically identified as a user. We then check whether the inserted e-mail address is already in the database, as we've seen before. The row in which the email is saved, as well as the password's digest, are then calculated. When the password does not match the ones in the database, it will respond *'Please check password’*. Furthermore, anyone registering with an incorrect email address (i.e., one with an invalid suffix) will automatically turn out to be an error.
+
+## *Read register*
+The function *read_register* can be called only by employees and its main purpose is to print all the information inside the *register.csv*, which contains the history of all the transactions done by the company. For every transaction, the function will show the  email of the customer, the date of the transaction, the metal that has been bought, the quantity and the final price. 
+
+## *Get balance*
+*Get_balance* is one of the three functions that only the employee can call (*read_register*, *get_balance*, and *pay_loan*). The function has three main purposes: Initially, it will read the *inventory.csv* and then print the amount of all the metals available in the inventory. 
+Secondly, the function will analyze the *wallet.csv* and then show the value associated with the balance column, which corresponds to the cash available to buy materials. Finally, the function will print the bank loan that the company asked to buy new materials if money is not enough.
+
+## *Pay loan*
+Employees are the only ones who can call the *pay loan* function. Its major purpose is to determine whether there is enough money to repay the bank, thereby verifying the availability of funds and repaying the bank loan in part or in full utilizing all of the company's accessible funds. Here, we consider the *wallet.csv* file, which contains any hypothetical amount to be returned to the bank, our balance, and then any cash inflow and outflow.
+
+As a result, the function's initial task is to determine whether any bank loan must be repaid. If our company's balance is equal to 0, the function will return *'You have no money to repay your bank loan.'* If the bank loan is equal to 0, the function will return *'There are no debts to be repaid.'*
+However, if our balance exceeds the loan, we will be able to repay the entire bank loan; otherwise, we will repay only a portion of the bank loan.
