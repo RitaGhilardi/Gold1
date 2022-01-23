@@ -188,7 +188,7 @@ The function does not have any input and returns two parameters: a boolean varia
 
 Furthermore, the function divides the prices of the metals by 28,35 to transform the price from EUR/oz to EUR/g. After this transformation the dictionary is in the right format and ready to be returned.
 
-# ***buy_metals.py***
+## ***buy_metals.py***
 The module *buy_metals.py* includes the function *buy_metal()*, which is the one responsible for the purchase of the metal, so it reduces the inventory, it updates the wallet and adds the transaction to the register. 
 
 
@@ -211,3 +211,96 @@ After the verification that we have enough money, the algorithm buys the metal a
 
 
 After these steps the function sells the metal to the customer in the same way that was described above. Lastly, if the transaction was successful, the function registers it adding a new line to the csv file *register.csv*.
+
+# Tests
+The tests folder is a key package in the Gold1 repository, as it contains all the tests performed on our code. 
+Each module represents a set of different tests run on the **four main functions** of our project: *log_in()*, *verify_user()*, *add_employee()* and *buy_metals()*. The other functions created were excluded, as they just perform some basic calculations or they are just in charge of reading or writing the csv files.
+
+
+Each test file is structured as follows:
+
+
+- **Libraries importing**, in particular: *unittest*, *sys*, *os* and *pandas* in some cases.
+- **Definition of the path and module importing**: the path command tells the program where to look to import the module that we want to test. Then, it is imported. When running the pep8 we encountered an error referring to the fact that the import was not at the top of the file. However, if we would have moved it, the program would have returned an error saying that it wasn’t able to import the module.
+- **Setting up variables**: for each kind of test we set up different types of variables, which included valid inputs, invalid entries, corner and boundary cases.
+- ***test_valid_inputs()*** and ***test_invalid_inputs()***: these functions run the tests on the valid and invalid variables set previously.
+- ***if __name__ == “main”***: this command allows us to run the file on the command line.
+
+## *test_log_in.py*
+This file contains a set of tests performed on the function which **logs** people in the Gold1 **platform**.
+
+
+For the set of valid inputs, we decided to test the credentials of a user and an employee already registered into the platform. 
+Since the entries were valid, we expected the test to run successfully and thus we set *self.assertTrue*.
+
+
+Here there are other valid inputs that can be tested:
+
+![table_users](https://user-images.githubusercontent.com/82580537/150681222-7f474936-c31b-491e-a955-ba55c2f29224.png)
+
+
+In the case of invalid inputs, we tested different combinations of entries which we knew were wrong. In contrast to the previous instance, we set *self.AssertFalse* to tell the program we were expecting that those entries weren’t valid.
+
+## *test_verify_user.py*
+This set of tests is performed on the *verify_user.py* module, which **checks** the **emails** of users who would like to register into the platform.
+
+
+The valid inputs contain real email addresses, and since we expected them to be handled by our function as correct entries, we set *self.AssertTrue*.
+
+
+We also identified six different **wrong inputs**:
+
+
+- An email already registered into the platform;
+- An email which have the employee suffix “@gold1.com” and thus cannot be registered as a user;
+- An empty list;
+- A word;
+- An incomplete email address.
+
+For all these cases, we set *self.AssertFalse*.
+
+## *test_add_employee.py*
+The tests contained in this file are designed to check the functioning of the *add_employee.py* module, which is used to **register** a Gold1 **employee** into the platform.
+
+
+We assumed that the Gold1 employees are the members of our project group and since four of us are already registered, the only person that can create a new employee account is Marco Visentin, with the email that we set as being a valid input. 
+
+
+Since we didn’t want to write a new line on the database that contains registered employees’ data every time this test would have run correctly, we wrote some commands to **remove** the **testing variables** from that csv file. In this way, it is possible to run the test multiple times without worrying about the csv file being filled with testing entries.
+
+
+For the wrong entries, we tested different combinations of wrong and valid inputs, expecting our function to treat them as invalid ones, and thus setting *self.AssertFalse*.
+
+## *test_buy_metal.py*
+The *buy_metals.py* module is the one that allows users to **buy precious metals** from our platform. The required entries are: the user’s email, the metal and quantity that s(he) desires to purchase and check, which is a boolean variable that controls that the cvc inserted is equal to the one provided during the registration process.
+
+
+The tests performed on this function are mainly related to the **quantity** and **metal** inputs, because this function is always run after the log-in, and therefore the user has already been verified.
+
+
+A set of valid inputs was defined and then plugged into the function that tests them. After that, as we wanted not to record the testing transactions on the csv which register all the purchases, we added some commands so that the database is not changed.
+
+
+We also tested different types and combinations of inavlid inputs, which we expected to be handled by our function as wrong inputs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
